@@ -51,7 +51,7 @@ window.addEventListener('DOMContentLoaded',(event)=>{
 
 function save(){
     try{
-        contact._id=getID();
+        //contact._id=getID();
         contact._name=document.getElementById('name').value;
         contact._phone=document.getElementById('phone').value;
         contact._address=document.getElementById('address').value;
@@ -67,13 +67,24 @@ function save(){
 
 function updateToLocalStorage(){
     let record = JSON.parse(localStorage.getItem("Record"));
-    if(record!=undefined){
-        record.push(contact);
+    if(record){
+        let dataToUpdate = record.find(bookObj=>bookObj._id ==contact._id);
+        if(!dataToUpdate){
+            contact._id=getID();
+            record.push(contact);
+        } else {
+            removeCont(record.find(bookObj=>bookObj._id==contact._id));
+            contact._id=getID();
+            record.push(contact);
+        }
     }else{
+        contact._id=getID();
         record=[contact];
     }
+
     console.log(record);
     localStorage.setItem("Record",JSON.stringify(record));
+    window.location.replace(site_properties.home_page);
 }
 
 function resetForm(){
@@ -116,3 +127,4 @@ function setValue(property,value){
     const element = document.querySelector(property);
     element.value = value;
 }
+

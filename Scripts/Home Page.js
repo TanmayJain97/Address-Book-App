@@ -35,7 +35,7 @@ function createInnerHTML(){
             <td>${contact._zip}</td>
             <td>${contact._phone}</td>
             <td>
-                <img id="${contact._id}" src="../Assets/icons/delete-black-18dp.svg" id="${contact._id}" alt="delete" onclick="remove(this)"><br>
+                <img id="${contact._id}" src="../Assets/icons/delete-black-18dp.svg" id="${contact._id}" alt="delete" onclick="removeCont(this)"><br>
                 <img id="${contact._id}" src="../Assets/icons/create-black-18dp.svg" id="${contact._id}" alt="edit" onclick="update(this)">
             </td>
         </tr>
@@ -44,7 +44,7 @@ function createInnerHTML(){
     document.querySelector('#table').innerHTML = innerHTML;
 }
 
-function remove(node){
+function removeCont(node){
     let contact = record.find(bookObj=>bookObj._id == node.id);
     if(!contact){
         console.log("No entry found!!");
@@ -64,5 +64,4 @@ function update(node){
     }
     localStorage.setItem('editContact', JSON.stringify(contact,'\t', 2));
     window.location.replace(site_properties.contact_form);
-    checkForUpdate();
 }
