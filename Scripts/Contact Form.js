@@ -1,3 +1,6 @@
+let isUpdate=false;
+let newContact=new Array();
+
 window.addEventListener('DOMContentLoaded',(event)=>{
     const name = document.querySelector('#name');
     const textError = document.querySelector('.text-error');
@@ -43,6 +46,7 @@ window.addEventListener('DOMContentLoaded',(event)=>{
             addressError.textContent = exception;
         }
     });
+    checkForUpdates();
 });
 
 function save(){
@@ -88,4 +92,27 @@ function getID(){
     contID = !contID?1:(parseInt(contID)+1).toString();
     localStorage.setItem("ID",contID);
     return contID;
+}
+
+function checkForUpdates(){
+    const contactJson = localStorage.getItem('editContact');
+    isUpdate = contactJson?true:false;
+    if(!isUpdate) return;
+    newContact = JSON.parse(contactJson);
+    console.log(newContact);
+    setForm();
+}
+
+function setForm(){
+    setValue('#name',newContact._name);
+    setValue('#phone',newContact._phone);
+    setValue('#address',newContact._address);
+    setValue('#city',newContact._city);
+    setValue('#state',newContact._state);
+    setValue('#zip',newContact._zip);
+}
+
+function setValue(property,value){
+    const element = document.querySelector(property);
+    element.value = value;
 }
