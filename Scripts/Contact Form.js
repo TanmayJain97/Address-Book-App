@@ -47,7 +47,7 @@ window.addEventListener('DOMContentLoaded',(event)=>{
 
 function save(){
     try{
-        contact._id=0;
+        contact._id=getID();
         contact._name=document.getElementById('name').value;
         contact._phone=document.getElementById('phone').value;
         contact._address=document.getElementById('address').value;
@@ -81,4 +81,11 @@ function resetForm(){
 
 function resetErr(type){
     document.querySelector(type).textContent="";
+}
+
+function getID(){
+    let contID = localStorage.getItem("ID");
+    contID = !contID?1:(parseInt(contID)+1).toString();
+    localStorage.setItem("ID",contID);
+    return contID;
 }
