@@ -1,3 +1,3 @@
 # Address-Book-App
 
-Modified to UC 6 - Update Contact and populate on form
+Modified to UC 7 - Update Contact and save to Local Storage
