@@ -58,4 +58,16 @@ function save(){
     }catch (exception) {
         console.error(exception);
     }
+    updateToLocalStorage();
+}
+
+function updateToLocalStorage(){
+    let record = JSON.parse(localStorage.getItem("Record"));
+    if(record!=undefined){
+        record.push(contact);
+    }else{
+        record=[contact];
+    }
+    console.log(record);
+    localStorage.setItem("Record",JSON.stringify(record));
 }
