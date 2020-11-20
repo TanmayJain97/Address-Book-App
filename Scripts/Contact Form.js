@@ -44,3 +44,18 @@ window.addEventListener('DOMContentLoaded',(event)=>{
         }
     });
 });
+
+function save(){
+    try{
+        contact._id=0;
+        contact._name=document.getElementById('name').value;
+        contact._phone=document.getElementById('phone').value;
+        contact._address=document.getElementById('address').value;
+        contact._city=document.getElementById('city').value;
+        contact._state=document.getElementById('state').value;
+        contact._zip=document.getElementById('zip').value;
+        console.log(contact);
+    }catch (exception) {
+        console.error(exception);
+    }
+}
