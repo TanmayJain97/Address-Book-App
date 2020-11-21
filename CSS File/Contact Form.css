@@ -62,12 +62,17 @@ body{
     border-top-right-radius: 8px;
     opacity: 1;
     justify-content: center;
+    width: 100%;
 }
 .form-head-text{
+    display: flex;
+    width: 90%;
+    justify-self: center;
+    justify-content: center;
     font: normal normal normal 28px/37px Roboto;
     color: #FFFFFF;
     text-transform: uppercase;
-    margin-left: 20%;
+    align-items: center;
 }
 .column-content{
     display: flex;
