@@ -68,14 +68,17 @@ function save(){
 function updateToLocalStorage(){
     let record = JSON.parse(localStorage.getItem("Record"));
     if(record){
-        let dataToUpdate = record.find(bookObj=>bookObj._id ==contact._id);
+        let dataToUpdate = record.find(bookObj=>bookObj._id ==newContact._id);
+        
         if(!dataToUpdate){
             contact._id=getID();
             record.push(contact);
         } else {
-            removeCont(record.find(bookObj=>bookObj._id==contact._id));
+            console.log("rem");
+            const index = record.map(bookObj => bookObj._id)
+                                .indexOf(dataToUpdate._id);
             contact._id=getID();
-            record.push(contact);
+            record.splice(index, 1, contact);
         }
     }else{
         contact._id=getID();
@@ -110,7 +113,7 @@ function checkForUpdates(){
     isUpdate = contactJson?true:false;
     if(!isUpdate) return;
     newContact = JSON.parse(contactJson);
-    console.log(newContact);
+    console.log(newContact)
     setForm();
 }
 
@@ -127,4 +130,3 @@ function setValue(property,value){
     const element = document.querySelector(property);
     element.value = value;
 }
-
